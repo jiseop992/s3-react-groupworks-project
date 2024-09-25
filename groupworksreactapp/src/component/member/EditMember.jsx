@@ -13,7 +13,7 @@ const EditMember = ( {memberNo , openModal, handleCloseModal} ) => {
     });
 
     useEffect( () => {
-        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/${memberNo}`)
+        fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/member/${memberNo}`)
         .then( resp => resp.json() )
         .then( data => {
             setLoginVo(data.loginMemberVo);
@@ -21,7 +21,7 @@ const EditMember = ( {memberNo , openModal, handleCloseModal} ) => {
     })
 
     const handleSubmit = () => {
-        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/`, {
+        fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/member/`, {
             method: "PUT" ,
             headers: {
                 "Content-Type": "application/json"

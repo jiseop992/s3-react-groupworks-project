@@ -41,13 +41,13 @@ const UserInfoMain = () => {
 
     
     useEffect( () => {
-        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/${loginMemberNo}`)
+        fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/member/${loginMemberNo}`)
         .then( resp => resp.json() )
         .then( data => {
             setLoginMemberVo(data.loginMemberVo);
         });
         
-        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/attendance/vacation/total/${loginMemberNo}`)
+        fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/attendance/vacation/total/${loginMemberNo}`)
         .then( resp => resp.json() )
         .then( data => {
             setTotalDays(data.totalDays);

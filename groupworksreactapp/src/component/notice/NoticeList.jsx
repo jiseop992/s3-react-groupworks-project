@@ -135,7 +135,7 @@ const StyledNoticeListDiv = styled.div`
 // 조회수 증가 함수
 const incrementClickCount = async (noticeNo) => {
     try {
-        const response = await fetch(`${process.env.GROUPWORKS_API_URL}/app/notice/increase-click/${noticeNo}`, {
+        const response = await fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/notice/increase-click/${noticeNo}`, {
             method: 'POST',
         });
 
@@ -180,7 +180,7 @@ const NoticeList = ({ showTopFive, showWriteButton, showPagination, showEditAndD
         // 파일 이름만 추출
         const fileName = filePath.split('/').pop();
         // 서버에서 설정된 정적 파일 경로를 사용
-        const downloadURL = `${process.env.GROUPWORKS_API_URL}/resources/upload/notice/img/${fileName}`;
+        const downloadURL = `${process.env.REACT_APP_GROUPWORKS_API_URL}/resources/upload/notice/img/${fileName}`;
     
         // a 태그를 생성하여 프로그래매틱하게 클릭 이벤트를 발생시킵니다.
         const link = document.createElement('a');
@@ -220,7 +220,7 @@ const NoticeList = ({ showTopFive, showWriteButton, showPagination, showEditAndD
 
     const handleSave = (editedNotice) => {
         // API 호출 URL 설정
-        const apiUrl = `${process.env.GROUPWORKS_API_URL}/app/notice/edit`;
+        const apiUrl = `${process.env.REACT_APP_GROUPWORKS_API_URL}/app/notice/edit`;
         fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -251,7 +251,7 @@ const NoticeList = ({ showTopFive, showWriteButton, showPagination, showEditAndD
         const loginMemberNo = sessionStorage.getItem("loginMemberNo");
     
         if (loginMemberNo) {
-            const response = await fetch(`${process.env.GROUPWORKS_API_URL}/app/notice/list?page=${currentPage}&limit=${itemsPerPage}&memberNo=${loginMemberNo}`);
+            const response = await fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/notice/list?page=${currentPage}&limit=${itemsPerPage}&memberNo=${loginMemberNo}`);
             const data = await response.json();
             if (data.voList && Array.isArray(data.voList)) {
                 setTotalItems(data.totalCount); // 총 아이템 수를 설정
@@ -291,7 +291,7 @@ const NoticeList = ({ showTopFive, showWriteButton, showPagination, showEditAndD
 
     const handleDelete = noticeNo => {
         const loginMemberNo = sessionStorage.getItem("loginMemberNo");
-        fetch(`${process.env.GROUPWORKS_API_URL}/app/notice/delete/${noticeNo}?memberNo=${loginMemberNo}`, {
+        fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/notice/delete/${noticeNo}?memberNo=${loginMemberNo}`, {
             method: 'DELETE',
             method: 'DELETE',
             headers: {

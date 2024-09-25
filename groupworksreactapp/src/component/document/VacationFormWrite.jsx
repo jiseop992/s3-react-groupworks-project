@@ -210,7 +210,7 @@ const VacationFormWrite = () => {
   });
 
   const fetchCompanyMember = () => {
-    fetch(`${process.env.GROUPWORKS_API_URL}/app/api/vacation-form/member?companyNo=${loginMember.companyNo}`, {
+    fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/vacation-form/member?companyNo=${loginMember.companyNo}`, {
       method: 'GET',
       headers : {
         'Content-Type' : 'application/json'
@@ -251,7 +251,7 @@ const VacationFormWrite = () => {
   const loginMemberNo = sessionStorage.getItem("loginMemberNo");
   const queryParam = encodeURIComponent(loginMemberNo);
 
-  const url = `${process.env.GROUPWORKS_API_URL}/app/api/vacation-form/login-member?no=${queryParam}`;
+  const url = `${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/vacation-form/login-member?no=${queryParam}`;
   const fetchLoginMember = () => {
     fetch(url)
     .then( (resp) => resp.json() )
@@ -319,7 +319,7 @@ const VacationFormWrite = () => {
       sign
     };
     console.log('formData:', formData);
-    fetch(`${process.env.GROUPWORKS_API_URL}/app/api/vacation-form/write` , {
+    fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/vacation-form/write` , {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
