@@ -54,7 +54,7 @@ const NoticeEdit = () => {
         }
 
         // 수정된 공지사항 데이터를 서버로 전송합니다.
-        fetch('http://127.0.0.1:8888/app/notice/edit', {
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/notice/edit`, {
             method: 'POST',
             body: formData // JSON.stringify를 사용하지 않고, FormData를 직접 전달
             })
@@ -75,7 +75,7 @@ const NoticeEdit = () => {
     };
 
     useEffect( () => {
-        fetch("http://127.0.0.1:8888/app/notice/list/categoryList")
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/notice/list/categoryList`)
         .then(resp => resp.json())
         .then(data => {
             if(data.msg === "okay"){
@@ -84,7 +84,7 @@ const NoticeEdit = () => {
             }
         })
 
-        fetch("http://127.0.0.1:8888/app/api/member/list/depart")
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/list/depart`)
         .then( resp => resp.json() )
         .then( data => {
             if(data.msg === 'okay') {
@@ -95,7 +95,7 @@ const NoticeEdit = () => {
             }
         });
 
-        fetch(`http://127.0.0.1:8888/app/api/member/${loginMemberNo}`)
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/${loginMemberNo}`)
         .then( resp => resp.json() )
         .then( data => {
             setLoginMemberVo(data.loginMemberVo);

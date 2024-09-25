@@ -98,7 +98,7 @@ const OrganList = () => {
         const loginMemberNo = sessionStorage.getItem("loginMemberNo");
 
         console.log(loginMemberNo);
-        fetch(`http://127.0.0.1:8888/app/organ/list?loginMemberNo=${loginMemberNo}`)
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/organ/list?loginMemberNo=${loginMemberNo}`)
         .then(resp => resp.json())
         .then(data => {
             if (data.voList && Array.isArray(data.voList)) {
@@ -120,7 +120,7 @@ const OrganList = () => {
     }, []);
 
     const handleDelete = no => {
-        fetch(`http://127.0.0.1:8888/app/organ/delete/${no}`, {
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/organ/delete/${no}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type' : 'application/json',

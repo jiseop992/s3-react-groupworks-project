@@ -33,9 +33,9 @@ const TestCalendar = ({ refresh }) => {
   useEffect(() => {
 
     Promise.all([
-      fetch(`http://127.0.0.1:8888/app/api/attendance/business-trip?loginMemberNo=${loginMemberNo}`).then(resp => resp.json()),
-      fetch(`http://127.0.0.1:8888/app/api/attendance/outside-work?loginMemberNo=${loginMemberNo}`).then(resp => resp.json()),
-      fetch(`http://127.0.0.1:8888/app/api/attendance/vacation?loginMemberNo=${loginMemberNo}`).then(resp => resp.json()),
+      fetch(`${process.env.GROUPWORKS_API_URL}/app/api/attendance/business-trip?loginMemberNo=${loginMemberNo}`).then(resp => resp.json()),
+      fetch(`${process.env.GROUPWORKS_API_URL}/app/api/attendance/outside-work?loginMemberNo=${loginMemberNo}`).then(resp => resp.json()),
+      fetch(`${process.env.GROUPWORKS_API_URL}/app/api/attendance/vacation?loginMemberNo=${loginMemberNo}`).then(resp => resp.json()),
     ])
     .then(([bTripData, outsideWorkData, vacationData]) => {
       const newEventList = [];
@@ -88,7 +88,7 @@ const TestCalendar = ({ refresh }) => {
   };
 
   const handleDeleteEvent = ( ) => {
-    fetch(`http://127.0.0.1:8888/app/api/attendance/${selectedEvent}/${selectedNo}`,{
+    fetch(`${process.env.GROUPWORKS_API_URL}/app/api/attendance/${selectedEvent}/${selectedNo}`,{
       method: "DELETE",
     })
     .then(resp => resp.json())

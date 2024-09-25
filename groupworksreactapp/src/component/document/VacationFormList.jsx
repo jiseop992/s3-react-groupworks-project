@@ -90,7 +90,7 @@ const VacationFormList = ({}) => {
     };
 
     useEffect( () => {
-        fetch(`http://127.0.0.1:8888/app/api/vacation-form/list?writerNo=${loginMemberNo}&page=${currentPage}&limit=${limit}`)
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/vacation-form/list?writerNo=${loginMemberNo}&page=${currentPage}&limit=${limit}`)
         .then( resp => resp.json() )
         .then( data => {
             if(data.msg === 'good'){
@@ -103,7 +103,7 @@ const VacationFormList = ({}) => {
     } , [loginMemberNo, currentPage]);
 
     const loadApplyList = () => {
-        fetch(`http://127.0.0.1:8888/app/api/vacation-form/apply-list?loginMemberNo=${loginMemberNo}&page=${applyCurrentPage}&limit=${limit}`)
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/vacation-form/apply-list?loginMemberNo=${loginMemberNo}&page=${applyCurrentPage}&limit=${limit}`)
         .then( resp => resp.json() )
         .then( data => {
             if(data.msg === 'good'){
@@ -117,7 +117,7 @@ const VacationFormList = ({}) => {
     };
 
     const handleDelete =(vacationNo) => {
-        fetch(`http://127.0.0.1:8888/app/api/vacation-form/delete`, {
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/vacation-form/delete`, {
             method:'POST',
             headers: {
                 'Content-Type' : 'application/json',
@@ -314,7 +314,7 @@ const VacationFormList = ({}) => {
 
 
     const queryParam = encodeURIComponent(loginMemberNo);
-    const url = `http://127.0.0.1:8888/app/api/vacation-form/login-member?no=${queryParam}`;
+    const url = `${process.env.GROUPWORKS_API_URL}/app/api/vacation-form/login-member?no=${queryParam}`;
     const fetchLoginMember = () => {
     fetch(url)
     .then( (resp) => resp.json() )
@@ -332,7 +332,7 @@ const VacationFormList = ({}) => {
     const handleApplyClick = (vacationNo) => {
         const isConfirmed = window.confirm("정말 승인 하시겠습니까?");
         if(isConfirmed) {
-            fetch(`http://127.0.0.1:8888/app/api/vacation-form/apply`,{
+            fetch(`${process.env.GROUPWORKS_API_URL}/app/api/vacation-form/apply`,{
                 method:'POST',
                 headers: {
                     'Content-Type' : 'application/json',
@@ -361,7 +361,7 @@ const VacationFormList = ({}) => {
     const handleRejectionClick = () => {
         const isConfirmed = window.confirm("정말 반려 하시겠습니까?");
         if(isConfirmed) {
-            fetch(`http://127.0.0.1:8888/app/api/vacation-form/rejection`,{
+            fetch(`${process.env.GROUPWORKS_API_URL}/app/api/vacation-form/rejection`,{
                 method:'POST',
                 headers: {
                     'Content-Type' : 'application/json',
@@ -391,7 +391,7 @@ const VacationFormList = ({}) => {
     };
 
     const refreshFormList = () => {
-        fetch(`http://127.0.0.1:8888/app/api/vacation-form/list?writerNo=${loginMemberNo}&page=${currentPage}&limit=${limit}`)
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/vacation-form/list?writerNo=${loginMemberNo}&page=${currentPage}&limit=${limit}`)
         .then(resp => resp.json())
         .then(data => {
             if(data.msg === 'good') {
