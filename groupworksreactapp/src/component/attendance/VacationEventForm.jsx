@@ -36,7 +36,7 @@ const VacationEventForm = ( props ) => {
         event.preventDefault();
         if (fetchType !== 'put') {
 
-            fetch("http://127.0.0.1:8888/app/api/attendance/vacation",{
+            fetch(`${process.env.GROUPWORKS_API_URL}/app/api/attendance/vacation`,{
                 method: "POST" ,
                 headers: {
                 "Content-Type": "application/json"
@@ -53,7 +53,7 @@ const VacationEventForm = ( props ) => {
                 }
             })
         } else {
-            fetch("http://127.0.0.1:8888/app/api/attendance/vacation",{
+            fetch(`${process.env.GROUPWORKS_API_URL}/app/api/attendance/vacation`,{
                 method: "PUT" ,
                 headers: {
                 "Content-Type": "application/json"

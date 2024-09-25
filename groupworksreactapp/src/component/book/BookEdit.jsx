@@ -65,7 +65,7 @@ const BookEdit = () => {
 
         //로긔인멤버 정보 불러오기
         const func = ( ) => {
-            fetch(`http://127.0.0.1:8888/app/api/member/${loginMemberNo}`)
+            fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/${loginMemberNo}`)
             .then( resp => resp.json() )
             .then( data => {
                 setLoginMemberVo(data.loginMemberVo);
@@ -87,7 +87,7 @@ const BookEdit = () => {
         };
 
         // 수정된 조직도 데이터를 서버로 전송합니다.
-        fetch('http://127.0.0.1:8888/app/book/edit', {
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/book/edit`, {
             method: 'POST',
             // body: formData
             headers: {

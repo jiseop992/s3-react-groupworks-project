@@ -28,7 +28,7 @@ const DeleteMember = () => {
     const loginMemberNo = sessionStorage.getItem("loginMemberNo");
 
     useEffect( () => {
-        fetch("http://127.0.0.1:8888/app/api/member/list/auth")
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/list/auth`)
         .then( resp => resp.json() )
         .then( data => {
             if(data.msg === 'okay') {
@@ -39,7 +39,7 @@ const DeleteMember = () => {
             }
         });
 
-        fetch("http://127.0.0.1:8888/app/api/member/list/depart")
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/list/depart`)
         .then( resp => resp.json() )
         .then( data => {
             if(data.msg === 'okay') {
@@ -50,7 +50,7 @@ const DeleteMember = () => {
             }
         });
 
-        fetch("http://127.0.0.1:8888/app/api/member/list/position")
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/list/position`)
         .then( resp => resp.json() )
         .then( data => {
             if(data.msg === 'okay') {
@@ -61,7 +61,7 @@ const DeleteMember = () => {
             }
         });
 
-        fetch(`http://127.0.0.1:8888/app/api/member/list/${loginMemberNo}`)
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/list/${loginMemberNo}`)
         .then( resp => resp.json() )
         .then( data => {
             if(data.msg === 'okay') {
@@ -75,7 +75,7 @@ const DeleteMember = () => {
 
     const handleDeleteBtn = ( prop ) => {
         console.log(prop);
-        fetch(`http://127.0.0.1:8888/app/api/member/${prop}`,{
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/${prop}`,{
             method: "DELETE"
         })
         .then(resp => resp.json())
@@ -130,7 +130,7 @@ const DeleteMember = () => {
     };
 
     const handleMemberChange = () => {
-        fetch("http://127.0.0.1:8888/app/api/member", {
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member`, {
             method : "PUT",
             headers : {
                 "Content-Type" : "application/json"

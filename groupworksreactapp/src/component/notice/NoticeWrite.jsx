@@ -86,8 +86,8 @@ const NoticeWrite = () => {
     // 카테고리와 부서 데이터를 로드하는 함수
     // const loadSelectOptions = async () => {
     //     try {
-    //         const categoryResponse = await fetch('http://127.0.0.1:8888/app/notice/list/categoryList');
-    //         const departmentResponse = await fetch('http://127.0.0.1:8888/app/notice/list/departList');
+    //         const categoryResponse = await fetch('${process.env.GROUPWORKS_API_URL}/app/notice/list/categoryList');
+    //         const departmentResponse = await fetch('${process.env.GROUPWORKS_API_URL}/app/notice/list/departList');
     //         if (!departmentResponse.ok) {
     //             throw new Error('데이터를 불러오는 데 실패했습니다.');
     //         }
@@ -103,7 +103,7 @@ const NoticeWrite = () => {
     // };
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8888/app/notice/list/categoryList')
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/notice/list/categoryList`)
         .then(resp => resp.json())
         .then(data => {
             if (data && data.categories) {
@@ -113,7 +113,7 @@ const NoticeWrite = () => {
         });
         // loadSelectOptions();
 
-        fetch('http://127.0.0.1:8888/app/notice/list/departList')
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/notice/list/departList`)
         .then(resp => resp.json())
         .then(data => {
             if (data && data.list) {
@@ -123,7 +123,7 @@ const NoticeWrite = () => {
         });
 
 
-        // fetch('http://127.0.0.1:8888/app/notice/list/emergencyYn')
+        // fetch('${process.env.GROUPWORKS_API_URL}/app/notice/list/emergencyYn')
         // .then( resp => resp.json())
         // .then( data => {
         //     console.log(data.list);
@@ -163,7 +163,7 @@ const NoticeWrite = () => {
     // };
 
     const func = ( ) => {
-        fetch(`http://127.0.0.1:8888/app/api/member/${loginMemberNo}`)
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/${loginMemberNo}`)
         .then( resp => resp.json() )
         .then( data => {
             setLoginMemberVo(data.loginMemberVo);
@@ -191,7 +191,7 @@ const NoticeWrite = () => {
         }
 
         try {
-            const response = await fetch('http://127.0.0.1:8888/app/notice/insert', {
+            const response = await fetch(`${process.env.GROUPWORKS_API_URL}/app/notice/insert`, {
                 method: 'POST',
                 // headers: {
                 //     "Content-type" : "application/json"

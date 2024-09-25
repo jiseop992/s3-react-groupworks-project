@@ -69,7 +69,7 @@ const handleDateChange = (e) => {
 
     //로긔인멤버 정보 불러오기
     const func = ( ) => {
-        fetch(`http://127.0.0.1:8888/app/api/member/${loginMemberNo}`)
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/${loginMemberNo}`)
         .then( resp => resp.json() )
         .then( data => {
             setLoginMemberVo(data.loginMemberVo);
@@ -103,7 +103,7 @@ const handleDateChange = (e) => {
             // console.log('JSON 데이터 전송:', jsonData);
     
             // JSON 데이터로 요청 전송
-            const response = await fetch('http://127.0.0.1:8888/app/book/insert', {
+            const response = await fetch('${process.env.GROUPWORKS_API_URL}/app/book/insert', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

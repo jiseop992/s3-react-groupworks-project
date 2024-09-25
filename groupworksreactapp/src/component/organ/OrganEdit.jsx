@@ -56,7 +56,7 @@ const OrganEdit = () => {
 
 
         // 수정된 조직도 데이터를 서버로 전송합니다.
-        fetch('http://127.0.0.1:8888/app/organ/edit', {
+        fetch(`${process.env.GROUPWORKS_API_URL}/app/organ/edit`, {
             method: 'POST',
             body: formData // JSON.stringify를 사용하지 않고, FormData를 직접 전달
             })

@@ -51,7 +51,7 @@ const Login = () => {
     const handleLoginSubmit = (event) => {
     event.preventDefault();
 
-    fetch("http://127.0.0.1:8888/app/api/member", {
+    fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

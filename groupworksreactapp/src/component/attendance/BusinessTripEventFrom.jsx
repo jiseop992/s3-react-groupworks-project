@@ -29,7 +29,7 @@ const BusinessTripEventFrom = ( props ) => {
         
         if (fetchType !== "put") {
 
-            fetch("http://127.0.0.1:8888/app/api/attendance/business-trip",{
+            fetch(`${process.env.GROUPWORKS_API_URL}/app/api/attendance/business-trip`,{
                 method: "POST" ,
                 headers: {
                     "Content-Type": "application/json"
@@ -48,8 +48,7 @@ const BusinessTripEventFrom = ( props ) => {
         } 
         else {
            
-            console.log(businessTripVo);
-            fetch("http://127.0.0.1:8888/app/api/attendance/business-trip",{
+            fetch(`${process.env.GROUPWORKS_API_URL}/app/api/attendance/business-trip`,{
                 method: "PUT" ,
                 headers: {
                     "Content-Type": "application/json"
