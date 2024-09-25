@@ -17,8 +17,11 @@ const EditMember = ( {memberNo , openModal, handleCloseModal} ) => {
         .then( resp => resp.json() )
         .then( data => {
             setLoginVo(data.loginMemberVo);
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
         });
-    })
+    }, [memberNo]);
 
     const handleSubmit = () => {
         fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/member/`, {
@@ -32,10 +35,9 @@ const EditMember = ( {memberNo , openModal, handleCloseModal} ) => {
         .then( data => {
             if(data.msg === 'okay'){
                 alert("회원정보 수정 완료 !");
-                window.location.reload();
+                setLoginVo(prev => ({ ...prev, ...editVo }));
             } else {
                 alert("회원정보 수정 실패 재시도 바랍니다.");
-                window.location.reload();
             }
         })
     };
