@@ -98,7 +98,7 @@ const BookList = () => {
         try {
             const queryStartDate = startDate === '' ? null : startDate;
             const queryEndDate = endDate === '' ? null : endDate;
-            const response = await fetch(`${process.env.GROUPWORKS_API_URL}/app/book/list?startDate=${startDate}&endDate=${endDate}&memberName=${encodeURIComponent(searchName)}`);
+            const response = await fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/book/list?startDate=${startDate}&endDate=${endDate}&memberName=${encodeURIComponent(searchName)}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

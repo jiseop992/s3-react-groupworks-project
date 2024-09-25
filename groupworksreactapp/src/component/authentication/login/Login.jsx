@@ -51,7 +51,7 @@ const Login = () => {
     const handleLoginSubmit = (event) => {
     event.preventDefault();
 
-    fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member`, {
+    fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/member`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

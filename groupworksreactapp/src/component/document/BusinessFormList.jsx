@@ -88,7 +88,7 @@ const BusinessTripFormList = ({}) => {
     };
 
     useEffect( () => {
-        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/business-trip-form/list?writerNo=${loginMemberNo}&page=${currentPage}&limit=${limit}`)
+        fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/business-trip-form/list?writerNo=${loginMemberNo}&page=${currentPage}&limit=${limit}`)
         .then( resp => resp.json() )
         .then( data => {
             if(data.msg === 'good'){
@@ -101,7 +101,7 @@ const BusinessTripFormList = ({}) => {
     } , [loginMemberNo, currentPage] );
 
     const loadApplyList = () => {
-        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/business-trip-form/apply-list?loginMemberNo=${loginMemberNo}&page=${applyCurrentPage}&limit=${limit}`)
+        fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/business-trip-form/apply-list?loginMemberNo=${loginMemberNo}&page=${applyCurrentPage}&limit=${limit}`)
         .then( resp => resp.json() )
         .then( data => {
             if(data.msg === 'good'){
@@ -115,7 +115,7 @@ const BusinessTripFormList = ({}) => {
     };
 
     const handleDelete =(vacationNo) => {
-        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/business-trip-form/delete`, {
+        fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/business-trip-form/delete`, {
             method:'POST',
             headers: {
                 'Content-Type' : 'application/json',
@@ -311,7 +311,7 @@ const BusinessTripFormList = ({}) => {
 
 
     const queryParam = encodeURIComponent(loginMemberNo);
-    const url = `${process.env.GROUPWORKS_API_URL}/app/api/business-trip-form/login-member?no=${queryParam}`;
+    const url = `${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/business-trip-form/login-member?no=${queryParam}`;
     const fetchLoginMember = () => {
     fetch(url)
     .then( (resp) => resp.json() )
@@ -329,7 +329,7 @@ const BusinessTripFormList = ({}) => {
     const handleApplyClick = (vacationNo) => {
         const isConfirmed = window.confirm("정말 승인 하시겠습니까?");
         if(isConfirmed) {
-            fetch(`${process.env.GROUPWORKS_API_URL}/app/api/business-trip-form/apply`,{
+            fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/business-trip-form/apply`,{
                 method:'POST',
                 headers: {
                     'Content-Type' : 'application/json',
@@ -358,7 +358,7 @@ const BusinessTripFormList = ({}) => {
     const handleRejectionClick = () => {
         const isConfirmed = window.confirm("정말 반려 하시겠습니까?");
         if(isConfirmed) {
-            fetch(`${process.env.GROUPWORKS_API_URL}/app/api/business-trip-form/rejection`,{
+            fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/business-trip-form/rejection`,{
                 method:'POST',
                 headers: {
                     'Content-Type' : 'application/json',
@@ -388,7 +388,7 @@ const BusinessTripFormList = ({}) => {
     };
 
     const refreshFormList = () => {
-        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/business-trip-form/list?writerNo=${loginMemberNo}&page=${currentPage}&limit=${limit}`)
+        fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/business-trip-form/list?writerNo=${loginMemberNo}&page=${currentPage}&limit=${limit}`)
         .then(resp => resp.json())
         .then(data => {
             if(data.msg === 'good') {

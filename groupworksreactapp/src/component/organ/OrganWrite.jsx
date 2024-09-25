@@ -87,7 +87,7 @@ const OrganWrite = () => {
         // navigate('/organ/list'); // 작성 완료 후 목록 페이지로 이동
         try{
             console.log('전송 시작', organData);
-            const response = await fetch(`${process.env.GROUPWORKS_API_URL}/app/organ/insert`, {
+            const response = await fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/organ/insert`, {
                 method : 'POST',
                 body : formData,
             });

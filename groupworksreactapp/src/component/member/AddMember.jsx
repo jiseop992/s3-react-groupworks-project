@@ -30,13 +30,13 @@ const AddMember = () => {
     const [positionList, setPositionList] = useState([]);
 
     useEffect( () => {
-        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/list/depart`)
+        fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/member/list/depart`)
         .then( (resp) => { return resp.json() })
         .then( (data) => {
           setDepartList(data.departList);
         });
     
-        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/list/position`)
+        fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/member/list/position`)
         .then( (resp) => { return resp.json() })
         .then( (data) => {
           setPositionList(data.positionList);
@@ -80,7 +80,7 @@ const AddMember = () => {
     // id 중복확인
     const handleIdCheck = () => {
         let idStr = memberVo.id;
-        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/check-id?id=${idStr}`)
+        fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/member/check-id?id=${idStr}`)
         .then( resp => resp.json() )
         .then( data => {
         if(data.msg === 'nope'){
@@ -94,7 +94,7 @@ const AddMember = () => {
     //Add Api 호출
     const handleJoinSubmit = (event) => {
         event.preventDefault();
-        fetch(`${process.env.GROUPWORKS_API_URL}/app/api/member/add`, {
+        fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/member/add`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

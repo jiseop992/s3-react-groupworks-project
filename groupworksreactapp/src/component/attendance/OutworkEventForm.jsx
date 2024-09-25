@@ -54,7 +54,7 @@ const OutworkEventForm = ( props ) => {
 
         if(fetchType !== 'put') {
 
-            fetch(`${process.env.GROUPWORKS_API_URL}/app/api/attendance/outside-work`,{
+            fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/attendance/outside-work`,{
                 method: "POST" ,
                 headers: {
                     "Content-Type": "application/json"
@@ -72,7 +72,7 @@ const OutworkEventForm = ( props ) => {
             }) 
         } else {
 
-            fetch(`${process.env.GROUPWORKS_API_URL}/app/api/attendance/outside-work`,{
+            fetch(`${process.env.RREACT_APP_GROUPWORKS_API_URL}/app/api/attendance/outside-work`,{
                 method: "PUT" ,
                 headers: {
                     "Content-Type": "application/json"

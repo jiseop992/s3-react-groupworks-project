@@ -209,7 +209,7 @@ const BusinessTripFormWrite = () => {
   });
 
   const fetchCompanyMember = () => {
-    fetch(`${process.env.GROUPWORKS_API_URL}/app/api/business-trip-form/member?companyNo=${loginMember.companyNo}`, {
+    fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/business-trip-form/member?companyNo=${loginMember.companyNo}`, {
       method: 'GET',
       headers : {
         'Content-Type' : 'application/json'
@@ -250,7 +250,7 @@ const BusinessTripFormWrite = () => {
   const loginMemberNo = sessionStorage.getItem("loginMemberNo");
   const queryParam = encodeURIComponent(loginMemberNo);
 
-  const url = `${process.env.GROUPWORKS_API_URL}/app/api/business-trip-form/login-member?no=${queryParam}`;
+  const url = `${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/business-trip-form/login-member?no=${queryParam}`;
   const fetchLoginMember = () => {
     fetch(url)
     .then( (resp) => resp.json() )
@@ -300,7 +300,7 @@ const BusinessTripFormWrite = () => {
       sign
     };
     console.log('formData:', formData);
-    fetch(`${process.env.GROUPWORKS_API_URL}/app/api/business-trip-form/write` , {
+    fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/business-trip-form/write` , {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'

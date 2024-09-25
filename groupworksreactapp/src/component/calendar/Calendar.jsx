@@ -22,7 +22,7 @@ const Calendar = ({ refresh }) => {
   useEffect(() => {
     console.log("렌더중");
     fetch(
-      `${process.env.GROUPWORKS_API_URL}/app/api/attendance/business-trip?loginMemberNo=${loginMemberNo}`
+      `${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/attendance/business-trip?loginMemberNo=${loginMemberNo}`
     )
       .then((resp) => resp.json())
       .then((data) => {
@@ -30,7 +30,7 @@ const Calendar = ({ refresh }) => {
       });
 
     fetch(
-      `${process.env.GROUPWORKS_API_URL}/app/api/attendance/outside-work?loginMemberNo=${loginMemberNo}`
+      `${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/attendance/outside-work?loginMemberNo=${loginMemberNo}`
     )
       .then((resp) => resp.json())
       .then((data) => {
@@ -38,7 +38,7 @@ const Calendar = ({ refresh }) => {
       });
 
     fetch(
-      `${process.env.GROUPWORKS_API_URL}/app/api/attendance/vacation?loginMemberNo=${loginMemberNo}`
+      `${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/attendance/vacation?loginMemberNo=${loginMemberNo}`
     )
       .then((resp) => resp.json())
       .then((data) => {
