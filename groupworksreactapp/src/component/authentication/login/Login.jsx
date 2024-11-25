@@ -47,16 +47,20 @@ const Login = () => {
         } );
     };
 
-    // API 호출
-    const handleLoginSubmit = (event) => {
-    event.preventDefault();
+  // API 호출
+  const handleLoginSubmit = (isGuest = false) => {
+    // event.preventDefault();
+
+    const body = isGuest 
+      ? { id: "guest", pwd: "guest"}
+      : memberVo;
 
     fetch(`${process.env.REACT_APP_GROUPWORKS_API_URL}/app/api/member`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(memberVo)
+      body: JSON.stringify(body)
     })
     .then( resp => resp.json() )
     .then( data => {
@@ -69,11 +73,17 @@ const Login = () => {
     } )
   };
 
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    handleLoginSubmit();
+  }
+
+
     return (
         <StyledLoginDiv>
             <StyeldLoginForm>
                 <h1>로그인</h1>
-                    <Form onSubmit={handleLoginSubmit}>
+                    <Form onSubmit={handleFormSubmit}>
                          <Form.Group className="mb-3" controlId="formBasicEmail">
                          <Form.Label>아이디</Form.Label>
                          <Form.Control type="text" placeholder="ID" name='id' onChange={handleInputChange} />
@@ -83,6 +93,9 @@ const Login = () => {
                      </Form.Group>
                      <Button variant="primary" type="submit">
                         LOGIN
+                    </Button>
+                    <Button variant="warning" onClick={() => handleLoginSubmit(true)}>
+                        게스트 로그인
                     </Button>
                     </Form>
 
