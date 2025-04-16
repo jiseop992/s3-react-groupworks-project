@@ -1,26 +1,170 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const StyledSignUpDiv = styled.div`
+// 2열로 나누기 위한 스타일 추가
+const StyledFormInner = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 20px;
+`;
+
+const StyledFormColumn = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  input, select {
+    margin: 8px 0;
+  }
+`;
+
+//전체 페이지 배경
+const StyledSignUpPage = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
     height: 100vh;
-    background-color: #61dafb;
+    margin: -20px 0 50px;
+`;
+
+//회원가입 카드 박스
+const StyledContainer = styled.div`
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+                0 10px 10px rgba(0,0,0,0.22);
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 
-const StyledSignUpForm = styled.div`
+// 폼 스타일
+const StyledFormBox = styled.div`
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+
+  form {
     display: flex;
     flex-direction: column;
-    width: 30vw;
-    height: 90vh;
     align-items: center;
-    justify-content: center;
-    background-color: #effcff;
-    border: 1px solid transparents;
-    border-radius: 15%;
+    padding: 0 50px;
+    width: 100%;
+  }
+
+  h1 {
+    font-weight: bold;
+    margin: 20px 0 20px 0;
+  }
+
+  input, select {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+
+  select {
+    background-color: #eee;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+  }
+
+
+  p {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333333;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 10px 0 0;
+    }
+
+  a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+  }
+`;
+
+// 버튼 디자인
+const StyledButton = styled.button`
+  border-radius: 20px;
+  border: 1px solid #FF4B2B;
+  background-color: #FF4B2B;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  margin: 5px 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.ghost {
+    background-color: transparent;
+    border-color: #FF4B2B;
+    color: #FF4B2B;
+  }
+`;
+
+const StyledLinkButton = styled(Link)`
+  border-radius: 20px;
+  border: 1px solid #FF4B2B;
+  background-color: transparent;
+  color: #FF4B2B;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  margin: 15px 0 0 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  transition: transform 80ms ease-in, background-color 0.3s ease;
+
+  &:hover {
+    background-color: #FF4B2B;
+    color: white;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+`;
+
+// 회사 등록 버튼 스타일 수정
+const StyledCompanyButton = styled(StyledButton)`
+  background-color: #FF4B2B;
+  color: white;
+  width: 50%; 
+  font-size: 14px;
+  margin-top: 10px; 
+  padding: 12px 15px;
+  margin-left: auto;
+  &:active {
+    transform: scale(0.98);
+  }
 `;
 
 const SignUp = () => {
@@ -164,59 +308,111 @@ const SignUp = () => {
     };
 
     return (
-        <StyledSignUpDiv>
-            <StyledSignUpForm>
+        <StyledSignUpPage>
+        <StyledContainer>
+          <StyledFormBox>
+            <form onSubmit={handleJoinSubmit}>
                 <h1>회원가입</h1>
-                <Form onSubmit={handleJoinSubmit}>
-                    <Form.Group className="mb-3">
-                        <Form.Label>이름</Form.Label>
-                        <Form.Control size='sm' type="text" placeholder="이름" name='name' onChange={handleInputChange} />
 
-                    <Form.Group>
-                            <Form.Label>ID</Form.Label>
-                            <Form.Control size='sm' type="text" placeholder="ID" name='id'onChange={handleInputChange} />
-                            <Form.Text className="text-muted">
-                                4글자 이상의 아이디를 입력후, 중복체크를 해주세요.
-                            </Form.Text>
-                            <Button size='sm' variant="primary" onClick={handleIdCheck}>
-                                중복체크
-                            </Button>
-                    </Form.Group>
+                <StyledFormInner>
+                    <StyledFormColumn>
+                        <input
+                            type="text"
+                            placeholder="이름"
+                            name="name"
+                            value={memberVo.name}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder="아이디"
+                            name="id"
+                            value={memberVo.id}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <input
+                            type="password"
+                            placeholder="패스워드"
+                            name="pwd"
+                            value={memberVo.pwd}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <input
+                            type="email"
+                            placeholder="이메일"
+                            name="email"
+                            value={memberVo.email}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder="연락처"
+                            name="tel"
+                            value={memberVo.tel}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder="주소"
+                            name="address"
+                            value={memberVo.address}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </StyledFormColumn>
+                    <StyledFormColumn>
+                        
+                        <select
+                            name="departNo"
+                            value={memberVo.departNo}
+                            onChange={handleInputChange}
+                            required
+                            >
+                            <option value="">부서를 선택하세요</option>
+                            {departList.map(depart => (
+                                <option key={depart.no} value={depart.no}>{depart.name}</option>
+                            ))}
+                        </select>
 
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control size='sm' type="password" placeholder="Password" name='pwd' onChange={handleInputChange} />
+                        <select
+                            name="positionNo"
+                            value={memberVo.positionNo}
+                            onChange={handleInputChange}
+                            required
+                        >
+                        <option value="">직책을 선택하세요</option>
+                            {positionList.map(position => (
+                                <option key={position.no} value={position.no}>{position.name}</option>
+                            ))}
+                        </select>
 
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control size='sm' type="email" placeholder="Email" name='email' onChange={handleInputChange}/>
-
-                        <Form.Label>연락처</Form.Label>
-                        <Form.Control size='sm' type="text" placeholder="연락처" name='tel' onChange={handleInputChange} />
-
-                        <Form.Label>주소</Form.Label>
-                        <Form.Control size='sm' type="text" placeholder="주소" name='address' onChange={handleInputChange} />
-
-                    <Form.Group>
-
-                        <Form.Label>회사명</Form.Label>
-                        <Form.Control size='sm' type="text" placeholder="회사명을 입력해주세요." name='name' onChange={handleInputCompany} />
-                        <Button size='sm' variant="primary" onClick={handleCompanyAdd}>
+                        <input
+                            type="text"
+                            placeholder="회사명을 입력해주세요."
+                            name="name"
+                            value={companyVo.name}
+                            onChange={handleInputCompany}
+                            required
+                        />
+                        <StyledCompanyButton type="button" onClick={handleCompanyAdd}>
                             회사 등록
-                        </Button>
-                    </Form.Group>
+                        </StyledCompanyButton>
 
-                        <Form.Label>부서</Form.Label>
-                        <ListSelectBox prop="depart" list={departList} />
-
-                        <Form.Label>직책</Form.Label>
-                        <ListSelectBox prop="position" list={positionList} />
-                    </Form.Group>
-        
-                    <Button variant="primary" type="submit">
-                        가입하기
-                    </Button>
-                </Form>
-            </StyledSignUpForm>
-        </StyledSignUpDiv>
+                    </StyledFormColumn>
+                </StyledFormInner> 
+              <StyledButton type="submit">가입하기</StyledButton>
+            </form>
+  
+            <p>이미 계정이 있으신가요?</p>
+            <StyledLinkButton to="/login">로그인</StyledLinkButton>
+          </StyledFormBox>
+        </StyledContainer>
+      </StyledSignUpPage>
     );
 };
 
